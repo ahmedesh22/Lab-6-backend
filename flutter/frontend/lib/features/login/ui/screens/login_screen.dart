@@ -2,16 +2,12 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:joblinc/core/helpers/loading_overlay.dart';
-import 'package:joblinc/core/routing/routes.dart';
-import 'package:joblinc/core/theming/colors.dart';
-import 'package:joblinc/core/widgets/custom_divider_text.dart';
-import 'package:joblinc/core/widgets/custom_rounded_button.dart';
-import 'package:joblinc/features/login/logic/cubit/login_cubit.dart';
-import 'package:joblinc/features/login/logic/cubit/login_state.dart';
-import 'package:joblinc/features/signup/ui/widgets/email_text_field.dart';
-import 'package:joblinc/features/signup/ui/widgets/password_text_field.dart';
+import 'package:frontend/features/login/logic/cubit/login_cubit.dart';
+import 'package:frontend/features/login/logic/cubit/login_state.dart';
+import 'package:frontend/features/login/ui/widgets/custom_rounded_button.dart';
+import 'package:frontend/features/login/ui/widgets/email_text_field.dart';
+import 'package:frontend/features/login/ui/widgets/loading_overlay.dart';
+import 'package:frontend/features/login/ui/widgets/password_text_field.dart';
 
 class LoginScreen extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
@@ -27,12 +23,12 @@ class LoginScreen extends StatelessWidget {
         } else if (state is LoginSuccess) {
           ScaffoldMessenger.of(context)
               .showSnackBar(SnackBar(content: Text("login success")));
-          Navigator.pushReplacementNamed(context, Routes.homeScreen);
+          //Navigator.pushReplacementNamed(context, Routes.homeScreen);
         } else if (state is LoginFailure) {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text(
               "wrewrw ${state.error}",
-              style: TextStyle(color: Colors.red),
+              style: TextStyle(color: Colors.blue),
             ),
           ));
         }
@@ -78,14 +74,14 @@ class LoginScreen extends StatelessWidget {
                             semanticsLabel: "joinJobLinc",
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
-                                Navigator.pushReplacementNamed(
-                                    context, Routes.signUpScreen);
+                                // Navigator.pushReplacementNamed(
+                                //     context, Routes.signUpScreen);
                               },
-                            text: "Join JobLinc",
+                            text: "Sign up",
                             style: TextStyle(
                               fontSize: 16.sp,
                               fontWeight: FontWeight.bold,
-                              color: ColorsManager.crimsonRed,
+                              color: Colors.blue,
                             ),
                           ),
                         ],
@@ -96,21 +92,6 @@ class LoginScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 20),
-                    Center(
-                      child: customRoundedButton(
-                          width: 0.9.sw,
-                          foregroundColor: Colors.black,
-                          borderColor: Colors.blueAccent,
-                          text: "Sign in with google",
-                          backgroundColor: Colors.transparent,
-                          icon: FontAwesomeIcons.g,
-                          onPressed: () {
-                            Navigator.pushReplacementNamed(
-                                context, Routes.homeScreen);
-                          }),
-                    ),
-                    const SizedBox(height: 20),
-                    customDividerWithText(child: Text("or")),
                     const SizedBox(height: 20),
                     Form(
                       key: _formKey,
@@ -126,24 +107,6 @@ class LoginScreen extends StatelessWidget {
                               key: Key("login_password_textfield"),
                               passwordController: _passwordController),
                           const SizedBox(height: 10),
-                          GestureDetector(
-                            key: Key("login_forgotpassword_textButton"),
-                            onTap: () {
-                              Navigator.pushNamed(
-                                  context, Routes.forgotPasswordScreen);
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                key: Key("login_forgotpassword_text"),
-                                "Forgot Password?",
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: ColorsManager.softRosewood,
-                                ),
-                              ),
-                            ),
-                          ),
                           const SizedBox(height: 20),
                           SizedBox(
                               width: double.infinity,
@@ -151,7 +114,7 @@ class LoginScreen extends StatelessWidget {
                               child: customRoundedButton(
                                   key: Key("login_continue_button"),
                                   text: "Continue",
-                                  backgroundColor: ColorsManager.crimsonRed,
+                                  backgroundColor: Colors.blue,
                                   borderColor: Colors.transparent,
                                   padding: EdgeInsets.only(left: 20, right: 20),
                                   onPressed: () {

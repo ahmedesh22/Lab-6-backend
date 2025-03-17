@@ -1,5 +1,6 @@
-import 'package:joblinc/features/login/data/services/login_api_service.dart';
-import 'package:joblinc/features/login/data/services/securestorage_service.dart';
+
+import 'package:frontend/features/login/data/services/login_api_service.dart';
+import 'package:frontend/features/login/data/services/securestorage_service.dart';
 
 class LoginRepo {
   final LoginApiService _loginApiService;
@@ -11,7 +12,6 @@ class LoginRepo {
  
     await SecureStorage.saveTokens(
       accessToken: response.accessToken,
-      refreshToken: response.refreshToken,
     );
   }
 }

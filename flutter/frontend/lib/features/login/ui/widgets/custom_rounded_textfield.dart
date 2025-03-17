@@ -27,16 +27,16 @@ class CustomRoundedTextFormField extends StatelessWidget {
           filled: true,
           fillColor: const Color.fromARGB(255, 244, 251, 255),
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(15),
-            borderSide: BorderSide(color: Colors.grey.shade400),
+            borderRadius: BorderRadius.circular(5),
+            borderSide: BorderSide(color: Colors.grey.shade700),
           ),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(15),
-            borderSide: BorderSide(color: Colors.grey.shade400),
+            borderRadius: BorderRadius.circular(5),
+            borderSide: BorderSide(color: Colors.grey.shade700),
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(15),
-            borderSide: BorderSide(color: Colors.grey.shade400),
+            borderRadius: BorderRadius.circular(5),
+            borderSide: BorderSide(color: Colors.grey.shade700),
           ),
         ),
         validator: validator);

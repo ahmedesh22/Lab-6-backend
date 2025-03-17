@@ -8,16 +8,14 @@ class LoginApiService {
 
   Future<LoginResponse> login(String username, String password) async {
     try {
-      print(username);
-      print(password);
+
       final response = await _dio.post(
-        '/auth/login',
+        '/users/login',
         data: {
           'email': username,
           'password': password,
         },
       );
-      print(response.data);
       return LoginResponse.fromJson(response.data);
     } on DioException catch (e) {
       throw Exception(_handleDioError(e));
