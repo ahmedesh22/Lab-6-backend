@@ -1,1 +1,10 @@
 backend/node_modules/
+flutter/frontend/linux/flutter/generated_plugin_registrant.cc
+flutter/frontend/linux/flutter/generated_plugin_registrant.h
+flutter/frontend/linux/flutter/generated_plugins.cmake
+flutter/frontend/macos/Flutter/GeneratedPluginRegistrant.swift
+flutter/frontend/test/widget_test.dart
+flutter/frontend/windows/flutter/generated_plugin_registrant.cc
+flutter/frontend/windows/flutter/generated_plugin_registrant.h
+flutter/frontend/windows/flutter/generated_plugins.cmake
+flutter/frontend/pubspec.lock

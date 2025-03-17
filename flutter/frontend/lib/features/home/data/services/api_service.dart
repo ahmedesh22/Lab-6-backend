@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:frontend/features/home/data/models/item_model.dart';
-import '../models/item.dart'; // Ensure this points to your Item model
 
 class ApiService {
   late Dio _dio;
