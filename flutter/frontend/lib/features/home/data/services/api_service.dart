@@ -1,13 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:frontend/features/home/data/models/item_model.dart';
-import '../models/item.dart'; // Ensure this points to your Item model
 
 class ApiService {
   late Dio _dio;
 
   ApiService() {
     _dio = Dio(BaseOptions(
-      baseUrl: 'http://localhost:3000', 
+      baseUrl: 'http://localhost:8000', 
       connectTimeout: Duration(seconds: 10),
       receiveTimeout: Duration(seconds: 10),
     ));
