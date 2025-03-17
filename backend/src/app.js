@@ -2,6 +2,7 @@
 const express = require('express');
 // const dotenv = require('dotenv');
 const userRoutes = require('./routes/userRoutes');
+const itemRoutes = require('./routes/itemRoutes');
 // // Load environment variables from .env file
 // dotenv.config();
 
@@ -11,6 +12,8 @@ const app = express();
 app.use(express.json());
 // app.use(express.urlencoded({ extended: true }));
 
+// Mount the item routes
+app.use('/items', itemRoutes);
 app.use('/users', userRoutes);
 
 // Define a simple route
