@@ -19,13 +19,19 @@ class ListScreen extends StatelessWidget {
         itemCount: mockShoppingItems.length,
         itemBuilder: (context, index) {
           final item = mockShoppingItems[index];
-          return ListTile(
-            leading: Image.network(item.imageUrl, width: 50, height: 50, fit: BoxFit.cover),
-            title: Text(item.name),
-            subtitle: Text("\$${item.price.toStringAsFixed(2)}"),
-            trailing: Icon(Icons.arrow_forward_ios, size: 16),
-            onTap: () {
-            },
+          return GestureDetector(
+            child: Column(
+              children: [
+                ListTile(
+                  leading: Image.network(item.imageUrl, width: 50, height: 50, fit: BoxFit.cover),
+                  title: Text(item.name),
+                  subtitle: Text("\$${item.price.toStringAsFixed(2)}"),
+                  trailing: Icon(Icons.arrow_forward_ios, size: 16),
+                  onTap: () {
+                  },
+                ),
+              ],
+            ),
           );
         },
       ),
