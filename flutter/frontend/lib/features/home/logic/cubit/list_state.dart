@@ -1,6 +1,6 @@
 part of 'list_cubit.dart';
 
-@immutable
-sealed class ListState {}
+
+abstract class ListState {}
 
 final class ListInitial extends ListState {}
