@@ -10,28 +10,45 @@ function generateAuthToken(_id , res) {
 }
 
 
-const signup = async (req , res) => {
+const signup = async (req, res) => {
   try {
-      const {email , password} = req.body
-      const generatedId = new mongoose.Types.ObjectId();
-      
-      const newUser = new User({
-          _id : generatedId,
-          email,
-          password,
-      })
+    const { email, password } = req.body;
+    const generatedId = new mongoose.Types.ObjectId();
 
-      await newUser.save()
+    const newUser = new User({
+      _id: generatedId,
+      email,
+      password,
+    });
 
-      const token = generateAuthToken(generatedId , res)
+    await newUser.save();
 
-      res.status(201).send({User : newUser ,accessToken : token})
-  } catch (error) {
-      console.log('error: ' + error)
-      res.status(500).json({error : "internal server error"})
+    const token = generateAuthToken(generatedId, res);
 
+    const userToSend = {
+      email : newUser.email,
+      _id : newUser._id,
+      createdAt : newUser.createdAt,
+      updatedAt : newUser.updatedAt
   }
-}
+
+    res.status(201).send({ User: userToSend, accessToken: token });
+  } catch (error) {
+    console.error('Signup error:', error);
+
+    if (error.name === 'ValidationError') {
+      const messages = Object.values(error.errors)
+        .map(err => err.message)
+        .join(', ');
+      return res.status(400).json({ error: messages });
+    }
+
+    if (error.code && error.code === 11000) {
+      return res.status(400).json({ error: 'Email already exists' });
+    }
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
 
 
 const login = async (req , res) => {
@@ -52,8 +69,13 @@ const login = async (req , res) => {
           return res.status(404).json({error : "email or password or both is incorrect"})
       }
       const token = generateAuthToken(user._id , res)
-      
-      res.send({User : user , accessToken : token})
+      const userToSend = {
+          email : user.email,
+          _id : user._id,
+          createdAt : user.createdAt,
+          updatedAt : user.updatedAt
+      }
+      res.send({User : userToSend , accessToken : token})
       
   } catch (error) {
       console.log(error)
