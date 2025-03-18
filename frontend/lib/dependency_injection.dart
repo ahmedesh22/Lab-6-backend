@@ -1,3 +1,4 @@
+import 'package:frontend/features/home/data/services/api_service.dart';
 import 'package:frontend/features/home/logic/cubit/list_cubit.dart';
 import 'package:frontend/features/login/data/repos/login_repo.dart';
 import 'package:frontend/features/login/data/services/login_api_service.dart';
@@ -42,8 +43,9 @@ Future<void> setupGetIt() async {
   getIt.registerFactory<RegisterCubit>(
       () => RegisterCubit(getIt<RegisterRepo>()));
 
+  getIt.registerLazySingleton<ApiService>(() => ApiService(getIt<Dio>()));
 
-
+  getIt.registerFactory<ListCubit>(() => ListCubit(getIt<ApiService>()));
 }
 
 class ForgetPasswordCubit {}

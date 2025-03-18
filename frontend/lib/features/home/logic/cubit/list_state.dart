@@ -12,11 +12,6 @@ final class ListLoaded extends ListState {
   ListLoaded(this.items);
 }
 
-final class ShoppingUpdated extends ListState {  // Ensure it extends ListState
-  final List<Item> selectedItems;
-  ShoppingUpdated(this.selectedItems);
-}
-
 final class ListError extends ListState {
   final String message;
   ListError(this.message);

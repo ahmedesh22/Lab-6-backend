@@ -5,17 +5,17 @@ import 'package:frontend/features/home/data/services/api_service.dart';
 part 'list_state.dart';
 
 class ListCubit extends Cubit<ListState> {
-  List<Item>? items;
+  final ApiService _apiService;
+  List<Item> items = [];
   List<Item> selectedItems = [];
-  ListCubit() : super(ListInitial());
-  final apiService = ApiService();
+  ListCubit(this._apiService) : super(ListInitial());
 
   Future<void> getAllItems() async {
     try {
       emit(ListLoading());
-      final fetchedItems = await apiService.getAllItems();
+      final fetchedItems = await _apiService.getAllItems();
       items = fetchedItems;
-      
+
       emit(ListLoaded(fetchedItems));
     } catch (e) {
       emit(ListError('Failed to load items: $e'));
@@ -24,14 +24,15 @@ class ListCubit extends Cubit<ListState> {
 
   void addItem(Item item) {
     selectedItems.add(item);
-    emit(ShoppingUpdated(List.from(selectedItems))); 
+    // emit(ShoppingUpdated(List.from(selectedItems)));
   }
+
   void shoppingCartButton() {
     emit(ShowCart());
   }
 
   void backclicked() {
-    emit(ListInitial());
+    emit(ListLoaded(items));
   }
 
   void removeItemByName(List<Item> items, String nameToRemove) {
