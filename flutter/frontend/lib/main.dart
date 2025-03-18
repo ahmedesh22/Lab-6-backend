@@ -1,20 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/features/home/ui/screens/list_screen.dart';
-import 'package:frontend/features/login/ui/screens/login_screen.dart';
+import 'package:frontend/dependency_injection.dart';
 
-void main() {
-  runApp(MyApp());
+import 'package:frontend/routing/app_router.dart';
+import 'package:frontend/routing/routes.dart';
+
+void main() async {
+  await setupGetIt();
+
+  runApp(MainApp(
+    appRouter: AppRouter(),
+  ));
 }
 
-class MyApp extends StatelessWidget {
+class MainApp extends StatelessWidget {
+  final AppRouter appRouter;
+  const MainApp({super.key, required this.appRouter});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: LoginScreen(),
+      initialRoute: Routes.loginScreen,
+      onGenerateRoute: appRouter.generateRoute,
     );
   }
 }

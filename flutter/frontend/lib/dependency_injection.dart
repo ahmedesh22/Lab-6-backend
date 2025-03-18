@@ -6,7 +6,6 @@ import 'package:frontend/features/register/logic/cubit/signup_cubit.dart';
 import 'package:get_it/get_it.dart';
 import 'package:dio/dio.dart';
 
-
 import '../../features/login/logic/cubit/login_cubit.dart';
 
 final getIt = GetIt.instance;
@@ -14,7 +13,7 @@ final getIt = GetIt.instance;
 Future<void> setupGetIt() async {
   Dio dio = Dio(
     BaseOptions(
-      baseUrl: 'http://localhost:3000/api',
+      baseUrl: 'http://localhost:8000/api',
       connectTimeout: const Duration(seconds: 10),
       receiveTimeout: const Duration(seconds: 10),
       headers: {
@@ -45,5 +44,4 @@ Future<void> setupGetIt() async {
   getIt.registerFactory<ForgetPasswordCubit>(() => ForgetPasswordCubit());
 }
 
-class ForgetPasswordCubit {
-}
+class ForgetPasswordCubit {}

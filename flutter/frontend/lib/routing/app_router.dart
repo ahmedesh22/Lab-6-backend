@@ -5,7 +5,7 @@ import 'package:frontend/features/login/logic/cubit/login_cubit.dart';
 import 'package:frontend/features/login/ui/screens/login_screen.dart';
 import 'package:frontend/features/register/logic/cubit/signup_cubit.dart';
 import 'package:frontend/features/register/ui/screens/signup_screen.dart';
-import '/Users/MAC/Documents/Lab-6/flutter/frontend/routing/routes.dart';
+import 'routes.dart';
 
 class AppRouter {
   Route? generateRoute(RouteSettings settings) {
