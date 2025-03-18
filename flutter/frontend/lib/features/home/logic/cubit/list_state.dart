@@ -1,6 +1,8 @@
 part of 'list_cubit.dart';
 
 
-abstract class ListState {}
+abstract class ShoppingState {}
 
-final class ListInitial extends ListState {}
+final class ShoppingInitial extends ShoppingState {}
+
+final class CartState extends ShoppingState {}
