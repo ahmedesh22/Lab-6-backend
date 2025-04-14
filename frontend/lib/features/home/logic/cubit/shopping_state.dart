@@ -16,6 +16,8 @@ final class ShoppingUpdated extends ShoppingState {
   ShoppingUpdated(this.selectedItems);
 }
 
+
+
 // final class ShoppingLoading extends ShoppingState {}
 
 // final class ShoppingLoaded extends ShoppingState {

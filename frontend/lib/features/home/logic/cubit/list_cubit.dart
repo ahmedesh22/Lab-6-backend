@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frontend/features/home/data/models/item_model.dart';
 import 'package:frontend/features/home/data/services/api_service.dart';
+import 'package:frontend/features/payment/data/stripe_api_serviec.dart';
 
 part 'list_state.dart';
 
@@ -42,4 +43,11 @@ class ListCubit extends Cubit<ListState> {
     }
     emit(ShowCart());
   }
+  
+    void checkoutClicked(double amount) {
+    emit(ShoppingCheckoutClicked(amount));
+    StripeService.instance.makePayment(amount: amount);
+    
+  }
+
 }

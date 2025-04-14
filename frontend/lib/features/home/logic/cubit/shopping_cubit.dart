@@ -15,6 +15,7 @@ class ShoppingCubit extends Cubit<ShoppingState> {
     selecteditems.removeWhere((item) => item.name == name);
     emit(ShoppingUpdated(List.from(selecteditems)));
   }
+
 }
 
 

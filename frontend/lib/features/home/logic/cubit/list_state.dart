@@ -17,3 +17,8 @@ final class ListError extends ListState {
   ListError(this.message);
 }
 final class ShowCart extends ListState{}
+
+final class ShoppingCheckoutClicked extends ListState {
+  double amount;
+  ShoppingCheckoutClicked(this.amount);
+}
